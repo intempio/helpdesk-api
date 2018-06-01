@@ -1,0 +1,37 @@
+import uuid
+
+from django.db import models
+from model_utils.models import TimeStampedModel
+
+
+class Event(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    event_name = models.CharField(max_length=255)
+    event_type = models.CharField(max_length=50, blank=True)
+    program_id = models.CharField(max_length=50, blank=True)
+    date = models.DateTimeField(blank=True, null=True)
+    ac_link = models.URLField(blank=True)
+
+    class Meta:
+        ordering = ['-modified', '-created']
+
+
+class Attendee(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(blank=True)
+
+    class Meta:
+        ordering = ['-modified', '-created']
+
+
+class EventAttendee(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='event_attendee')
+    attendee = models.ForeignKey('Attendee', on_delete=models.CASCADE, related_name='event_attendee')
+    pre_registered = models.BooleanField(default=False)
+    call_complete = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-modified', '-created']
