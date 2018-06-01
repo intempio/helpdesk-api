@@ -43,4 +43,4 @@ class EventAttendee(TimeStampedModel):
     call_complete = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['-modified', '-created']
+        ordering = ['event__date', '-modified', '-created']
