@@ -15,16 +15,25 @@ class Event(TimeStampedModel):
     class Meta:
         ordering = ['-modified', '-created']
 
+    def __str__(self):
+        return f'{self.event_name}'
+
 
 class Attendee(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(unique=True)
 
     class Meta:
         ordering = ['-modified', '-created']
 
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
+    def __str__(self):
+        return f'{self.full_name}'
 
 class EventAttendee(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
