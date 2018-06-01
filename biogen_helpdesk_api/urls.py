@@ -1,15 +1,21 @@
 from django.conf import settings
-from django.urls import path, re_path, include, reverse_lazy
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.urls import include, path, re_path, reverse_lazy
 from django.views.generic.base import RedirectView
-from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
-from .users.views import UserViewSet, UserCreateViewSet
+from rest_framework.routers import DefaultRouter
+
+from .events.views import AttendeeViewSet, EventAttendeeViewSet, EventViewSet
+from .users.views import UserCreateViewSet, UserViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'users', UserCreateViewSet)
+router.register(r'events', EventViewSet)
+router.register(r'attendees', AttendeeViewSet)
+router.register(r'event-attendees', EventAttendeeViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
