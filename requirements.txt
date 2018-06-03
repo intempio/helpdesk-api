@@ -39,3 +39,4 @@ boto3==1.7.30
 # MISC
 django-extensions==2.0.0
 django-cors-headers==2.2.0
+nplusone==1.0.0

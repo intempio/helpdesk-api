@@ -1,8 +1,10 @@
 import os
-from os.path import join
 from distutils.util import strtobool
+from os.path import join
+
 import dj_database_url
 from configurations import Configuration
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -22,6 +24,7 @@ class Common(Configuration):
         'rest_framework.authtoken',  # token authentication
         'django_filters',  # for filtering rest endpoints
         'django_extensions',
+        'corsheaders',
 
         # Your apps
         'biogen_helpdesk_api.users',
@@ -31,8 +34,10 @@ class Common(Configuration):
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
     MIDDLEWARE = (
+        'nplusone.ext.django.NPlusOneMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -187,17 +192,19 @@ class Common(Configuration):
     # Django Rest Framework
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 10)),
+        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 20)),
         'DATETIME_FORMAT': '%Y-%m-%d %I:%M:%S %p',
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
             'rest_framework.renderers.BrowsableAPIRenderer',
         ),
-        'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAuthenticated',
-        ],
+        # 'DEFAULT_PERMISSION_CLASSES': [
+        #     'rest_framework.permissions.IsAuthenticated',
+        # ],
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
         )
     }
+
+    CORS_ORIGIN_ALLOW_ALL = True
