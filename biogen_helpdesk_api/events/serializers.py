@@ -1,15 +1,20 @@
 from rest_framework import serializers
+
 from.models import Event, Attendee, EventAttendee
 
 class EventSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Event
         fields = '__all__'
 
 
 class EventAttendeeSerializer(serializers.ModelSerializer):
-    event = EventSerializer()
+    class Meta:
+        model = EventAttendee
+        fields = '__all__'
+
+class EventAttendeeReadOnlySerializer(serializers.ModelSerializer):
+    event = EventSerializer(read_only=True)
 
     class Meta:
         model = EventAttendee
@@ -17,7 +22,7 @@ class EventAttendeeSerializer(serializers.ModelSerializer):
 
 
 class AttendeeSerializer(serializers.ModelSerializer):
-    event_attendee = EventAttendeeSerializer(many=True, read_only=True)
+    event_attendee = EventAttendeeReadOnlySerializer(many=True, read_only=True)
 
     class Meta:
         model = Attendee
