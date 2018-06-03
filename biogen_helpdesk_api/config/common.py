@@ -204,7 +204,8 @@ class Common(Configuration):
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
-        )
+        ),
+
     }
 
     CORS_ORIGIN_ALLOW_ALL = True

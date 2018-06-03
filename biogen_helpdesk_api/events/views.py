@@ -16,7 +16,11 @@ class EventViewSet(viewsets.ModelViewSet):
 
 
 class AttendeeViewSet(viewsets.ModelViewSet):
-    queryset = Attendee.objects.all().prefetch_related('event_attendee__event')
+    queryset = Attendee.objects.all().prefetch_related(
+        'event_attendee__event'
+    ).order_by(
+        'event_attendee__event__date'
+    )
     serializer_class = AttendeeSerializer
     filter_backends = (SearchFilter, )
     search_fields = ('first_name', 'last_name')
@@ -24,11 +28,10 @@ class AttendeeViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def recent_attendees(self, request):
         today = datetime.today()
-        recent_attendees = Attendee.objects.filter(
+        recent_attendees = self.get_queryset().filter(
             event_attendee__event__date__gte=today
-        ).order_by(
-            'event_attendee__event__date'
-        ).prefetch_related('event_attendee__event')
+        )
+        recent_attendees = self.filter_queryset(recent_attendees)
 
         page = self.paginate_queryset(recent_attendees)
         if page is not None:
