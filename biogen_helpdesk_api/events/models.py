@@ -23,7 +23,8 @@ class Event(TimeStampedModel):
     @property
     def is_today(self):
         if self.date:
-            return (datetime.now(get_current_timezone()) - self.date).days == 0
+            print((self.date - datetime.now(get_current_timezone())).days)
+            return (self.date - datetime.now(get_current_timezone())).days == 0
         return False
 
 
