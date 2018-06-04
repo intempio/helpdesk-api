@@ -5,7 +5,8 @@ from.models import Event, Attendee, EventAttendee
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ('id', 'event_name', 'event_type', 'program_id',
+                  'date', 'is_today', 'ac_link', 'modified', 'created')
 
 
 class EventAttendeeSerializer(serializers.ModelSerializer):

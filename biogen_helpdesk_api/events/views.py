@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db.models import Q
+from django.utils.timezone import get_current_timezone
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
@@ -28,12 +29,12 @@ class AttendeeViewSet(viewsets.ModelViewSet):
 
     @action(detail=False)
     def recent_attendees(self, request):
-        today = datetime.today()
-        recent_attendees = self.get_queryset().filter(
+        today = datetime.now(get_current_timezone())
+
+        recent_attendees = self.filter_queryset(self.get_queryset())
+        recent_attendees = recent_attendees.filter(
             Q(event_attendee__event__date__gte=today) | Q(event_attendee__isnull=True)
         )
-
-        recent_attendees = self.filter_queryset(recent_attendees)
 
         page = self.paginate_queryset(recent_attendees)
         if page is not None:

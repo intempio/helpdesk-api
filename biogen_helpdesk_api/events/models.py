@@ -1,6 +1,8 @@
 import uuid
+from datetime import datetime
 
 from django.db import models
+from django.utils.timezone import get_current_timezone
 from model_utils.models import TimeStampedModel
 
 
@@ -17,6 +19,12 @@ class Event(TimeStampedModel):
 
     def __str__(self):
         return f'{self.event_name}'
+
+    @property
+    def is_today(self):
+        if self.date:
+            return (datetime.now(get_current_timezone()) - self.date).days == 0
+        return False
 
 
 class Attendee(TimeStampedModel):
