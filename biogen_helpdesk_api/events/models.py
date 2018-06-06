@@ -14,7 +14,7 @@ class Event(TimeStampedModel):
     ac_link = models.URLField(blank=True)
 
     class Meta:
-        ordering = ['-modified', '-created']
+        ordering = ['date', '-modified', '-created']
 
     # def __str__(self):
     #     return f'{self.event_name}'

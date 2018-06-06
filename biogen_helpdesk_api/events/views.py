@@ -20,8 +20,12 @@ from django.http import HttpResponseRedirect
 
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.all()
+    queryset = Event.objects.all().order_by('date')
     serializer_class = EventSerializer
+
+    def get_queryset(self):
+        today = datetime.now(get_current_timezone())
+        return super().get_queryset().filter(date__gte=today)
 
 
 class AttendeeViewSet(viewsets.ModelViewSet):
