@@ -63,5 +63,5 @@ class UpTimeView(APIView):
     permission_classes = (AllowAny,)
     renderer_classes = (JSONRenderer,)
 
-    def get(self):
+    def get(self, request, format=None):
         return Response('Ok')
