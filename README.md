@@ -31,7 +31,7 @@ Deployment is automated via Travis. When builds pass on the master or qa branch,
 Initialize the production server:
 
 ```
-heroku create biogen_helpdesk_api-prod --remote prod && \
+heroku create biogen_helpdesk-api-prod --remote prod && \
     heroku addons:create newrelic:wayne --app biogen_helpdesk_api-prod && \
     heroku addons:create heroku-postgresql:hobby-dev --app biogen_helpdesk_api-prod && \
     heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
@@ -40,13 +40,13 @@ heroku create biogen_helpdesk_api-prod --remote prod && \
         DJANGO_AWS_STORAGE_BUCKET_NAME="biogen_helpdesk_api-prod" \
         DJANGO_CONFIGURATION="Production" \
         DJANGO_SETTINGS_MODULE="biogen_helpdesk_api.config" \
-        --app biogen_helpdesk_api-prod
+        --app biogen-helpdes-api-prod
 ```
 
 Initialize the qa server:
 
 ```
-heroku create biogen_helpdesk_api-qa --remote qa && \
+heroku create biogen-helpdesk_api-qa --remote qa && \
     heroku addons:create newrelic:wayne --app biogen_helpdesk_api-qa && \
     heroku addons:create heroku-postgresql:hobby-dev --app biogen_helpdesk_api-qa && \
     heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
