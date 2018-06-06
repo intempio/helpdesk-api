@@ -54,9 +54,13 @@ class EventAttendeeViewSet(viewsets.ModelViewSet):
     serializer_class = EventAttendeeSerializer
 
 
-#
-# class EventLookRedirectView(APIView):
-#     def get(self, request):
+class EventLookRedirectView(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request, event_id, format=None):
+        print(event_id)
+        return Response('Ok')
+
 
 
 class UpTimeView(APIView):

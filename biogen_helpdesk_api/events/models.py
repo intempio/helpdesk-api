@@ -7,7 +7,6 @@ from model_utils.models import TimeStampedModel
 
 
 class Event(TimeStampedModel):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     event_name = models.CharField(max_length=255)
     event_type = models.CharField(max_length=50, blank=True)
     program_id = models.CharField(max_length=50, blank=True)
@@ -28,7 +27,6 @@ class Event(TimeStampedModel):
 
 
 class Attendee(TimeStampedModel):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
@@ -45,11 +43,14 @@ class Attendee(TimeStampedModel):
 
 
 class EventAttendee(TimeStampedModel):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='event_attendee')
     attendee = models.ForeignKey('Attendee', on_delete=models.CASCADE, related_name='event_attendee')
     pre_registered = models.BooleanField(default=False)
     call_complete = models.BooleanField(default=False)
+
+    @property
+    def redirect_lookup_id(self):
+        return str(self.pk + 123456789)
 
     class Meta:
         ordering = ['-modified', '-created']

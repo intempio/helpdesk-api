@@ -6,7 +6,7 @@ from django.views.generic.base import RedirectView
 from rest_framework.authtoken import views
 from rest_framework.routers import DefaultRouter
 
-from .events.views import AttendeeViewSet, EventAttendeeViewSet, EventViewSet, UpTimeView
+from .events.views import AttendeeViewSet, EventAttendeeViewSet, EventViewSet, UpTimeView, EventLookRedirectView
 from .users.views import UserCreateViewSet, UserViewSet
 
 router = DefaultRouter()
@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('redirect/<event_id>/', EventLookRedirectView.as_view()),
     path('uptime/', UpTimeView.as_view()),
 
     # the 'api-root' from django rest-frameworks default router
