@@ -5,11 +5,15 @@ from django.utils.timezone import get_current_timezone
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
+from rest_framework.permissions import AllowAny
+from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 
 from .models import Attendee, Event, EventAttendee
 from .serializers import (AttendeeSerializer, EventAttendeeSerializer,
                           EventSerializer)
+
+from rest_framework.views import APIView
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -24,7 +28,7 @@ class AttendeeViewSet(viewsets.ModelViewSet):
         'event_attendee__event__date'
     )
     serializer_class = AttendeeSerializer
-    filter_backends = (SearchFilter, )
+    filter_backends = (SearchFilter,)
     search_fields = ('first_name', 'last_name')
 
     @action(detail=False)
@@ -48,3 +52,16 @@ class AttendeeViewSet(viewsets.ModelViewSet):
 class EventAttendeeViewSet(viewsets.ModelViewSet):
     queryset = EventAttendee.objects.all()
     serializer_class = EventAttendeeSerializer
+
+
+#
+# class EventLookRedirectView(APIView):
+#     def get(self, request):
+
+
+class UpTimeView(APIView):
+    permission_classes = (AllowAny,)
+    renderer_classes = (JSONRenderer,)
+
+    def get(self):
+        return Response('Ok')
