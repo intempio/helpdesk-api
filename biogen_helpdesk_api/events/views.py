@@ -28,9 +28,8 @@ class AttendeeViewSet(viewsets.ModelViewSet):
     search_fields = ('first_name', 'last_name')
 
     @action(detail=False)
-    def recent_attendees(self, request):
+    def recent(self, request):
         today = datetime.now(get_current_timezone())
-        print(today)
 
         recent_attendees = self.filter_queryset(self.get_queryset())
         recent_attendees = recent_attendees.filter(

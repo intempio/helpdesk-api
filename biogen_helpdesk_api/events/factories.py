@@ -3,6 +3,7 @@ import factory
 from .models import Attendee, Event, EventAttendee
 from django.utils.timezone import get_current_timezone
 
+
 class EventFactory(factory.django.DjangoModelFactory):
     event_name = factory.Sequence(lambda n: f'fake event {n}')
     event_type = factory.Sequence(lambda n: f'fake event type {n}')
@@ -21,7 +22,8 @@ class AttendeeFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Attendee
-        django_get_or_create = ('email', )
+        django_get_or_create = ('email',)
+
 
 class EventAttendeeFactory(factory.django.DjangoModelFactory):
     pre_registered = factory.Faker('pybool')

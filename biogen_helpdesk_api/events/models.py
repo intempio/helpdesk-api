@@ -15,7 +15,7 @@ class Event(TimeStampedModel):
     ac_link = models.URLField(blank=True)
 
     class Meta:
-        ordering = ['-date', '-modified', '-created']
+        ordering = ['-modified', '-created']
 
     def __str__(self):
         return f'{self.event_name}'
@@ -23,7 +23,6 @@ class Event(TimeStampedModel):
     @property
     def is_today(self):
         if self.date:
-            print((self.date - datetime.now(get_current_timezone())).days)
             return (self.date - datetime.now(get_current_timezone())).days == 0
         return False
 
@@ -44,6 +43,7 @@ class Attendee(TimeStampedModel):
     def __str__(self):
         return f'{self.full_name}'
 
+
 class EventAttendee(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='event_attendee')
@@ -52,4 +52,4 @@ class EventAttendee(TimeStampedModel):
     call_complete = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['event__date', '-modified', '-created']
+        ordering = ['-modified', '-created']

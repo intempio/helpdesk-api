@@ -196,7 +196,7 @@ class Common(Configuration):
         'DATETIME_FORMAT': '%Y-%m-%d %I:%M:%S %p',
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
-            # 'rest_framework.renderers.BrowsableAPIRenderer',
+            'rest_framework.renderers.BrowsableAPIRenderer',
         ),
         # 'DEFAULT_PERMISSION_CLASSES': [
         #     'rest_framework.permissions.IsAuthenticated',

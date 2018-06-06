@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from.models import Event, Attendee, EventAttendee
+from .models import Event, Attendee, EventAttendee
+
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,6 +14,7 @@ class EventAttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendee
         fields = '__all__'
+
 
 class EventAttendeeReadOnlySerializer(serializers.ModelSerializer):
     event = EventSerializer(read_only=True)
