@@ -9,6 +9,7 @@ class EventFactory(factory.django.DjangoModelFactory):
     event_type = factory.Sequence(lambda n: f'fake event type {n}')
     program_id = factory.Sequence(lambda n: f'fake program id {n}')
     date = factory.Faker('date_time_this_year', after_now=True, tzinfo=get_current_timezone())
+    ac_link = 'https://intempio.adobeconnect.com/virtual_office_hours'
 
     class Meta:
         model = Event

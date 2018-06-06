@@ -14,6 +14,9 @@ from .serializers import (AttendeeSerializer, EventAttendeeSerializer,
                           EventSerializer)
 
 from rest_framework.views import APIView
+from django.shortcuts import redirect, get_object_or_404
+from django.utils.http import urlencode
+from django.http import HttpResponseRedirect
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -58,9 +61,10 @@ class EventLookRedirectView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, event_id, format=None):
-        print(event_id)
-        return Response('Ok')
-
+        look_up = int(event_id) - 123456789
+        obj = get_object_or_404(EventAttendee, pk=look_up)
+        params = urlencode({'guestName': f'{obj.attendee.first_name} {obj.attendee.last_name}'})
+        return HttpResponseRedirect(f'{obj.event.ac_link}/?{params}')
 
 
 class UpTimeView(APIView):

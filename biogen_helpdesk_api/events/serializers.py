@@ -13,7 +13,8 @@ class EventSerializer(serializers.ModelSerializer):
 class EventAttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendee
-        fields = '__all__'
+        fields = ('id', 'attendee', 'pre_registered', 'call_complete',
+                  'modified', 'created', 'redirect_lookup_id')
 
 
 class EventAttendeeReadOnlySerializer(serializers.ModelSerializer):
@@ -21,7 +22,8 @@ class EventAttendeeReadOnlySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EventAttendee
-        fields = '__all__'
+        fields = ('id', 'attendee', 'pre_registered', 'call_complete',
+                  'modified', 'created')
 
 
 class AttendeeSerializer(serializers.ModelSerializer):
@@ -31,5 +33,5 @@ class AttendeeSerializer(serializers.ModelSerializer):
         model = Attendee
         fields = (
             'id', 'first_name', 'last_name', 'full_name', 'email', 'modified',
-            'created', 'event_attendee'
+            'created', 'event_attendee',
         )

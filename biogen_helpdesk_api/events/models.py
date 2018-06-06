@@ -16,8 +16,8 @@ class Event(TimeStampedModel):
     class Meta:
         ordering = ['-modified', '-created']
 
-    def __str__(self):
-        return f'{self.event_name}'
+    # def __str__(self):
+    #     return f'{self.event_name}'
 
     @property
     def is_today(self):
