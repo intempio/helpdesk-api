@@ -1,6 +1,9 @@
 from datetime import datetime
 
 from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.utils.http import urlencode
 from django.utils.timezone import get_current_timezone
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -8,15 +11,11 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Attendee, Event, EventAttendee
 from .serializers import (AttendeeSerializer, EventAttendeeSerializer,
                           EventSerializer)
-
-from rest_framework.views import APIView
-from django.shortcuts import redirect, get_object_or_404
-from django.utils.http import urlencode
-from django.http import HttpResponseRedirect
 
 
 class EventViewSet(viewsets.ModelViewSet):

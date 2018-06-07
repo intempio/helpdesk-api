@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 from biogen_helpdesk_api.events.factories import EventAttendeeFactory, AttendeeFactory
 
 
