@@ -2,12 +2,14 @@ from datetime import datetime
 
 from django.db import models
 from django.utils.timezone import get_current_timezone
+from model_utils import Choices
 from model_utils.models import TimeStampedModel
 
 
 class Event(TimeStampedModel):
+    EVENT_TYPE = Choices('EOD', 'Webcast')
     event_name = models.CharField(max_length=255)
-    event_type = models.CharField(max_length=50, blank=True)
+    event_type = models.CharField(choices=EVENT_TYPE, blank=True, max_length=20)
     program_id = models.CharField(max_length=50, blank=True)
     date = models.DateTimeField(blank=True, null=True)
     ac_link = models.URLField(blank=True)

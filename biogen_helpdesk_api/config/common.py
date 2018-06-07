@@ -193,7 +193,7 @@ class Common(Configuration):
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
         'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 20)),
-        'DATETIME_FORMAT': '%Y-%m-%d %I:%M:%S %p',
+        'DATETIME_FORMAT': '%m-%d %I:%M:%S %p',
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
             'rest_framework.renderers.BrowsableAPIRenderer',
