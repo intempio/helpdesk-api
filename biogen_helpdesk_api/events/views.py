@@ -1,13 +1,11 @@
 from datetime import datetime
 
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.http import urlencode
 from django.utils.timezone import get_current_timezone
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.filters import SearchFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
@@ -34,17 +32,11 @@ class AttendeeViewSet(viewsets.ModelViewSet):
         'event_attendee__event__date'
     )
     serializer_class = AttendeeSerializer
-    filter_backends = (SearchFilter,)
-    search_fields = ('first_name', 'last_name')
 
     @action(detail=False)
     def recent(self, request):
         today = datetime.now(get_current_timezone())
-
-        recent_attendees = self.filter_queryset(self.get_queryset())
-        recent_attendees = recent_attendees.filter(
-            Q(event_attendee__event__date__gte=today) | Q(event_attendee__isnull=True)
-        )
+        recent_attendees = self.get_queryset().filter(event_attendee__event__date__gte=today)
 
         page = self.paginate_queryset(recent_attendees)
         if page is not None:
@@ -52,6 +44,18 @@ class AttendeeViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
 
         serializer = self.get_serializer(recent_attendees, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False)
+    def no_events(self, request):
+        no_events_attendees = self.get_queryset().filter(event_attendee__isnull=True)
+
+        page = self.paginate_queryset(no_events_attendees)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(no_events_attendees, many=True)
         return Response(serializer.data)
 
 

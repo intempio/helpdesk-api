@@ -17,8 +17,8 @@ class Event(TimeStampedModel):
     class Meta:
         ordering = ['date', '-modified', '-created']
 
-    # def __str__(self):
-    #     return f'{self.event_name}'
+    def __str__(self):
+        return f'{self.event_name} - ({self.program_id}) ({self.pk})'
 
     @property
     def is_today(self):
@@ -40,7 +40,7 @@ class Attendee(TimeStampedModel):
         return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
-        return f'{self.full_name}'
+        return f'{self.full_name} ({self.pk})'
 
 
 class EventAttendee(TimeStampedModel):
@@ -52,6 +52,9 @@ class EventAttendee(TimeStampedModel):
     @property
     def redirect_lookup_id(self):
         return str(self.pk + 123456789)
+
+    def __str__(self):
+        return f'{self.pk} - {self.event} {self.attendee}'
 
     class Meta:
         ordering = ['-modified', '-created']
