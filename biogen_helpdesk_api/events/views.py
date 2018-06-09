@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.http import urlencode
@@ -36,7 +37,9 @@ class AttendeeViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def recent(self, request):
         today = datetime.now(get_current_timezone())
-        recent_attendees = self.get_queryset().filter(event_attendee__event__date__gte=today)
+        recent_attendees = self.get_queryset().filter(
+            Q(event_attendee__event__date__gte=today) | Q(event_attendee__isnull=True)
+        )
 
         page = self.paginate_queryset(recent_attendees)
         if page is not None:
