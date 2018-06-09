@@ -39,7 +39,6 @@ class Attendee(TimeStampedModel):
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
 
-    @property
     def __str__(self):
         return f'{self.full_name} ({self.pk})'
 
@@ -52,7 +51,7 @@ class EventAttendee(TimeStampedModel):
 
     @property
     def redirect_lookup_id(self):
-        return str(self.pk + 123456789)
+        return self.pk + 123456789
 
     def __str__(self):
         return f'{self.pk} - {self.event} {self.attendee}'

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2abd84a5-596b-46e4-a106-ed3f0fac2355" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biogen_helpdesk_api/config/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/biogen_helpdesk_api/config/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biogen_helpdesk_api/events/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/biogen_helpdesk_api/events/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biogen_helpdesk_api/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/biogen_helpdesk_api/events/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,8 +42,8 @@
           <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+                <state relative-caret-position="-42">
+                  <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
                   </folding>
@@ -77,11 +76,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+                <state relative-caret-position="583">
+                  <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
                   </folding>
@@ -89,7 +88,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="common.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/config/common.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="342">
@@ -127,6 +126,8 @@
       <find>database</find>
       <find>EventAttendeeReadOnlySerializer</find>
       <find>EventAttendeeSerializer</find>
+      <find>idea</find>
+      <find>str</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,9 +149,10 @@
         <option value="$PROJECT_DIR$/biogen_helpdesk_api/events/management/commands/seed.py" />
         <option value="$PROJECT_DIR$/biogen_helpdesk_api/events/factories.py" />
         <option value="$PROJECT_DIR$/biogen_helpdesk_api/events/serializers.py" />
-        <option value="$PROJECT_DIR$/biogen_helpdesk_api/events/models.py" />
-        <option value="$PROJECT_DIR$/biogen_helpdesk_api/config/common.py" />
         <option value="$PROJECT_DIR$/biogen_helpdesk_api/events/views.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/biogen_helpdesk_api/config/common.py" />
+        <option value="$PROJECT_DIR$/biogen_helpdesk_api/events/models.py" />
       </list>
     </option>
   </component>
@@ -303,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528536850980</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="revert logic of recent endpoint">
+      <created>1528548798032</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1528548798032</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -351,25 +360,12 @@
     <MESSAGE value="optimize imports" />
     <MESSAGE value="update factory" />
     <MESSAGE value="add attendees no events endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="add attendees no events endpoint" />
+    <MESSAGE value="revert logic of recent endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert logic of recent endpoint" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/factories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
@@ -707,10 +703,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/models.py">
+    <entry file="file://$PROJECT_DIR$/.git/info/exclude">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+        <state relative-caret-position="144">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -727,10 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/views.py">
+    <entry file="file://$PROJECT_DIR$/biogen_helpdesk_api/events/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="583">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
