@@ -79,7 +79,7 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/2.0/howto/static-files/
     STATIC_ROOT = os.path.normpath(join(os.path.dirname(BASE_DIR), 'static'))
-    STATICFILES_DIRS = []
+    STATICFILES_DIRS = ['biogen_helpdesk_api/templates']
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',

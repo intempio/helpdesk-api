@@ -28,9 +28,12 @@ class Event(TimeStampedModel):
 
 
 class Attendee(TimeStampedModel):
+    ROLE_CHOICES = Choices('attendee', 'doctor', 'rep')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
+    phone = models.CharField(blank=True, max_length=50)
+    role = models.CharField(max_length=55, default=ROLE_CHOICES.attendee, choices=ROLE_CHOICES)
 
     class Meta:
         ordering = ['-modified', '-created']
@@ -48,6 +51,7 @@ class EventAttendee(TimeStampedModel):
     attendee = models.ForeignKey('Attendee', on_delete=models.CASCADE, related_name='event_attendee')
     pre_registered = models.BooleanField(default=False)
     call_complete = models.BooleanField(default=False)
+    comment = models.TextField(blank=True)
 
     @property
     def redirect_lookup_id(self):

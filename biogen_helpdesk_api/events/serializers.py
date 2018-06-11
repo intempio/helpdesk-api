@@ -32,5 +32,5 @@ class AttendeeSerializer(serializers.ModelSerializer):
         model = Attendee
         fields = (
             'id', 'first_name', 'last_name', 'full_name', 'email', 'modified',
-            'created', 'event_attendee',
+            'created', 'event_attendee', 'phone', 'role'
         )
