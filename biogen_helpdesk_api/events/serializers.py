@@ -22,7 +22,7 @@ class EventAttendeeReadOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendee
         fields = ('id', 'attendee', 'pre_registered', 'call_complete',
-                  'modified', 'created', 'event', 'redirect_lookup_id')
+                  'modified', 'created', 'event', 'redirect_lookup_id', 'comment')
 
 
 class AttendeeSerializer(serializers.ModelSerializer):
